@@ -1,12 +1,25 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import './index.css';
-import App from './App';
 import reportWebVitals from './reportWebVitals';
+import AuthProvider from './auth/AuthProvider';
+import { BrowserRouter as Router } from 'react-router-dom';
+
+import App from './App';
+import './index.css';
+import ReduxProvider from './store/ReduxProvider';
+import CustomThemeProvider from './theme/CustomThemeProvider';
 
 ReactDOM.render(
   <React.StrictMode>
-    <App />
+    <ReduxProvider>
+      <Router>
+        <AuthProvider>
+          <CustomThemeProvider>
+            <App />
+          </CustomThemeProvider>
+        </AuthProvider>
+      </Router>
+    </ReduxProvider>
   </React.StrictMode>,
   document.getElementById('root')
 );
